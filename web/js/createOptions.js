@@ -15,8 +15,8 @@ export function createOptions(type, data, id, zoneId) {
   if (data.hide) return;
 
   const option = document.createElement("div");
-  const iconElement = `<i class="fa-fw ${data.icon} option-icon" ${
-    data.iconColor ? `style = color:${data.iconColor} !important` : null
+  const iconElement = `<i class="fa-fw ${data.icon || "fas fa-circle"} option-icon" ${
+    `style = color:${data.iconColor || '#513dc4'} !important`
   }"></i>`;
 
   option.innerHTML = `${iconElement}<p class="option-label">${data.label}</p>`;
@@ -27,4 +27,7 @@ export function createOptions(type, data, id, zoneId) {
 
   option.addEventListener("click", onClick);
   optionsWrapper.appendChild(option);
+  setTimeout(() => {
+    option.classList.add('show'); 
+  }, 100);
 }

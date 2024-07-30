@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
-
-:root {
-  --color-default: #cfd2da;
-  --color-hover: white;
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap'); */
+@font-face {
+  font-family: "Acrom";
+  src: url("Acrom-Bold.ttf") format("truetype");
 }
 
 body {
@@ -22,17 +21,24 @@ p {
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 40;
 }
 
+#eyeSvg {
+  transition: fill 0.5s ease;
+}
+
 #eye {
+  color: #7048e8;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0);
   font-size: 22pt;
-  fill: black;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
-.eye-hover {
-  fill: var(--color-default);
+#eye.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 #options-wrapper {
@@ -42,39 +48,36 @@ p {
 }
 
 .option-container {
-  color: var(--color-default);
+  border-radius: 5px 0px 0px 5px;
+  color: #f0f0f0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  font-family: "Nunito";
-  background: linear-gradient(
-    90deg,
-    rgba(20, 20, 20, 0.7) 0%,
-    rgba(20, 20, 20, 0.6) 66%,
-    rgba(47, 48, 53, 0) 100%
-  );
+  font-family: "Acrom";
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.8);
   font-size: 11pt;
   line-height: 22pt;
   vertical-align: middle;
   margin: 2pt;
+  transform: scale(0);
   transition: 300ms;
   transform-origin: left top;
-  scale: 1;
+  scale: 0;
   height: 22pt;
   width: 150pt;
   top: 0;
 }
 
+.option-container.show {
+  transform: scale(1);
+  scale: 1;
+  margin-left: 2pt;
+}
+
 .option-container:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(30, 30, 30, 0.7) 0%,
-    rgba(30, 30, 30, 0.6) 66%,
-    rgba(57, 58, 63, 0) 100%
-  );
   transform-origin: left top;
-  color: var(--color-hover);
+  color: white;
   margin-left: 4pt;
 }
 
@@ -83,7 +86,6 @@ p {
   line-height: 22pt;
   width: 14pt;
   margin: 5pt;
-  color: var(--color-default);
 }
 
 .option-label {

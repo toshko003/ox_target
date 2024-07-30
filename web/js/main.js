@@ -2,6 +2,7 @@ import { createOptions } from "./createOptions.js";
 
 const optionsWrapper = document.getElementById("options-wrapper");
 const body = document.body;
+const eyeElement = document.getElementById("eye");
 const eye = document.getElementById("eyeSvg");
 
 window.addEventListener("message", (event) => {
@@ -10,15 +11,25 @@ window.addEventListener("message", (event) => {
   switch (event.data.event) {
     case "visible": {
       body.style.visibility = event.data.state ? "visible" : "hidden";
-      return eye.classList.remove("eye-hover");
+      if (event.data.state) {
+        eyeElement.classList.add("show");
+      } else {
+        eyeElement.classList.remove("show");
+      }
+      eye.style.transition = "fill 1.5s ease";
+      return (eye.style.fill = "url(#gradient2)");
     }
 
     case "leftTarget": {
-      return eye.classList.remove("eye-hover");
+      eye.style.transition = "fill 1.5s ease";
+      eye.style.fill = "url(#gradient2)";
+
+      return (eye.style.fill = "url(#gradient2)");
     }
 
     case "setTarget": {
-      eye.classList.add("eye-hover");
+      eye.style.transition = "fill 1.5s ease";
+      eye.style.fill = "url(#gradient)";
 
       if (event.data.options) {
         for (const type in event.data.options) {
